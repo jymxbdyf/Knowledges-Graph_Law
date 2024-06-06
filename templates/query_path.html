@@ -54,6 +54,35 @@
 
 		<!--Demo script [ DEMONSTRATION ]-->
 		<script src="../static/js/nifty-demo.min.js"></script>
+        <style type="text/css">
+            @media(max-width:960px)
+            {
+                #divweb{display:none}
+                #divtitle{
+                    font-family: 华文行楷,serif ;
+                    font-size:0.75em;
+                    height:0.6em;
+                    text-align: center;
+                }
+                #divtitle2{
+                    font-size:0.6em;
+                    height:0.7em;
+                    text-align: center;
+                }
+                #divtitle3{
+                    font-size:0.56em;
+                }
+                #divtable{
+                    height:6em;
+                    font-size:0.55em;
+                }
+                #divbutton0 {display:none}
+                #divbutton{
+                    font-size:0.5em;
+                    text-align: center;
+                }
+            }
+        </style>
 		<style type="text/css">
 			#tagsList {
 				position: relative;
@@ -142,14 +171,14 @@
 					<!--Page content-->
 					<!--===================================================-->
 					<div id="page-content">
-						<div class="row" style="height: 55px">
-							<div class="col-lg-8">
+						<div class="row">
+							<div class="col-lg-8" style="height: 4em" id="divtitle">
 								<span class="text-main pad-btm bord-btm"
-									style="font-family: 华文行楷,serif ;font-size:30px">
+									style="font-family: 华文行楷,serif ;font-size:2.3em">
 									民诉法知识图谱-具体路径检索
 								</span>
 							</div>
-							<div class="col-lg-2" style="width:300px">
+							<div class="col-lg-2" style="width:300px" id="divweb">
 								<span style="font-weight: lighter;font-size: 22px;font-family: 华文行楷,serif"
 									class="text-main pad-btm bord-btm">
 									同时按
@@ -166,76 +195,78 @@
 								</span>
 							</div>
 						</div>
-						<div class="row" style="height: 55px">
-							<div class="col-lg-3" style="width:350px">
+						<div class="row">
+							<div class="col-lg-3" style="width:350px;height: 2.3em"id="divtitle2">
 								<span
-									style="color: darkcyan ;font-family: 华文彩云,serif;font-weight: bold;font-size: 24px;"
+									style="color: darkcyan ;font-family: 华文彩云,serif;font-weight: bold;font-size: 1.8em;"
 									class="text-main pad-btm bord-btm">
 									根节点为
-									<i class="fa fa-chevron-circle-right" style="width:36px"></i>
+									<i class="fa fa-chevron-circle-right" style="width:2.1em"></i>
 									主管与管辖
 								</span>
 							</div>
-							<div class="col-lg-6">
-								<span style="font-family: 华文琥珀,serif;font-size: 24px;color:darkslategrey">
-									<i class="fa fa-hand-o-down" style="width:36px"></i>
-									请按照下表指引输入基本信息(若没有则不输入)
+							<div class="col-lg-6" id="divtitle3">
+								<span style="font-family: 华文琥珀,serif;font-size: 2em;color:darkslategrey">
+									<i class="fa fa-hand-o-down" style="width:1em"></i>
+									请按照下表指引输入节点名称(若没有则不输入)
 								</span>
 							</div>
 						</div>
-						<div class="col-lg-12">
+						<div class="row">
 							<div class="col-lg-2"></div>
-							<table style="height: 80px">
+							<table style="height:3em" >
 								<tr>
 									<td>
-										<div class="form-control input-lg">
-											<input style="font-weight: lighter;font-size: 17px;" id="one" name="one"
-												type="text" placeholder="请输入第一层节点名称" class="form-control input-lg">
+										<div class="form-control input-lg"id="divtable">
+											<input style="font-weight: lighter;font-size: 1.3em;" id="one" name="one"
+												type="text" placeholder="第一层节点名称" class="form-control input-lg">
 										</div>
 									</td>
 									<td>
-										<div class="form-control input-lg">
-											<input style="font-weight: lighter;font-size: 17px;" id="two" name="two"
-												type="text" placeholder="请输入第二层节点名称" class="form-control input-lg">
+										<div class="form-control input-lg"id="divtable">
+											<input style="font-weight: lighter;font-size: 1.3em;" id="two" name="two"
+												type="text" placeholder="第二层节点名称" class="form-control input-lg">
 										</div>
 									</td>
 									<td>
-										<div class="form-control input-lg">
-											<input style="font-weight: lighter;font-size: 17px;" id="three" name="three"
-												type="text" placeholder="请输入第三层节点名称" class="form-control input-lg">
+										<div class="form-control input-lg"id="divtable">
+											<input style="font-weight: lighter;font-size: 1.3em;" id="three" name="three"
+												type="text" placeholder="第三层节点名称" class="form-control input-lg">
 										</div>
 									</td>
 								</tr>
 
 								<tr>
 									<td>
-										<div class="form-control input-lg">
-											<input style="font-weight: lighter;font-size: 17px;" id="four" name="four"
-												type="text" placeholder="请输入第四层节点名称" class="form-control input-lg">
+										<div class="form-control input-lg"id="divtable">
+											<input style="font-weight: lighter;font-size: 1.3em" id="four" name="four"
+												type="text" placeholder="第四层节点名称" class="form-control input-lg">
 										</div>
 									</td>
 
 									<td>
-										<div class="form-control input-lg">
-											<input style="font-weight: lighter;font-size: 17px;" id="five" name="five"
-												type="text" placeholder="请输入第五层节点名称" class="form-control input-lg">
+										<div class="form-control input-lg"id="divtable">
+											<input style="font-weight: lighter;font-size: 1.3em" id="five" name="five"
+												type="text" placeholder="第五层节点名称" class="form-control input-lg">
 										</div>
 									</td>
 									<td>
-										<div class="form-control input-lg">
-											<input style="font-weight: lighter;font-size: 17px;" id="six" name="six"
-												type="text" placeholder="请输入第六层节点名称" class="form-control input-lg">
+										<div class="form-control input-lg"id="divtable">
+											<input style="font-weight: lighter;font-size: 1.3em" id="six" name="six"
+												type="text" placeholder="第六层节点名称" class="form-control input-lg">
 										</div>
 									</td>
 								</tr>
 							</table>
-							<div class="col-lg-3" style="width:195px"></div>
-							<div class="col-lg-7" style="width:855px">
-								<span style="font-weight: bold;font-size: 17px;" class="form-control btn btn-info"
-									onclick="query_path()">
-									确定查询
-								</span>
-							</div>
+                            <div class="row">
+							    <div class="col-lg-3" style="width:15.5em" id="divbutton0"></div>
+							    <div class="col-lg-7" style="width:65.5em" id="divbutton">
+								    <span style="font-weight: bold;font-size: 1.5em;" class="form-control btn btn-info"
+									    onclick="query_path()">
+									    确定查询
+								    </span>
+							    </div>
+                            </div>
 						</div>
 						<div class="row" style="height: 40px;"></div>
 						<div class="row">
@@ -322,6 +353,14 @@
 												<i class="fa fa-plus" style="width:24px"></i>
 												<span class="menu-title">
 													<strong>生成知识图谱的一条路径</strong>
+												</span>
+											</a>
+										</li>
+                                        <li>
+											<a href="{{ url_for('add_search') }}">
+												<i class="fa fa-question-circle" style="width:24px"></i>
+												<span class="menu-title">
+													<strong>检索新生成的节点</strong>
 												</span>
 											</a>
 										</li>

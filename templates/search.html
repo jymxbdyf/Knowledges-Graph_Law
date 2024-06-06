@@ -54,6 +54,25 @@
 
 		<!--Demo script [ DEMONSTRATION ]-->
 		<script src="../static/js/nifty-demo.min.js"></script>
+        <style type="text/css">
+            @media(max-width:960px)
+            {
+                #divweb{display:none}
+                #divtitle{
+                    height:0.6em;
+                    font-family: 华文行楷,serif ;
+                    font-size:0.75em;
+                }
+                #tagsList{
+                    width:15em;
+                    height:40%;
+                    text-align: center;
+                }
+                #guanxi{
+                    height:60%;
+                }
+            }
+        </style>
 		<style type="text/css">
 			#tagsList {
 				position: relative;
@@ -76,7 +95,6 @@
 				color: #249e92;
 				letter-spacing: 2px;
 			}
-
 			#search:focus {
 				border: 1px solid #249e92;
 			}
@@ -142,13 +160,13 @@
 					<!--Page content-->
 					<!--===================================================-->
 					<div id="page-content">
-                        <div class="row" style="height: 55px">
-                            <div class="col-lg-5">
-						        <span class="text-main pad-btm bord-btm" style="font-family: 华文行楷,serif ;font-size:30px">
+                        <div class="row">
+                            <div class="col-lg-5" id="divtitle" style="height: 4em">
+						        <span class="text-main pad-btm bord-btm" style="font-family: 华文行楷,serif ;font-size:2.3em">
 							        民诉法知识图谱-逻辑关系检索
 						        </span>
                             </div>
-                            <div class="col-lg-2" style="width:300px">
+                            <div class="col-lg-2" style="width:300px" id="divweb">
 								<span style="font-weight: lighter;font-size: 22px;font-family: 华文行楷,serif"
 									class="text-main pad-btm bord-btm">
 									同时按
@@ -166,8 +184,8 @@
 							</div>
                         </div>
 						<div class="row">
-							<div class="col-lg-7"style="width:760px"></div>
-							<div class="col-lg-4" style="width:350px">
+							<div class="col-lg-7"></div>
+							<div class="col-lg-4">
 								<div class="input-group">
 									<input style="font-weight: lighter;font-size: 17px;" type="text" id="search"
 										class="form-control input-lg" placeholder="请输入你要检索的情形...">
@@ -176,11 +194,11 @@
 								</div>
 							</div>
 						</div>
-						<div class="row" style="height: 40px;"></div>
-						<div class="row">
-							<div class="col-lg-8" style="height: 400px;" id="guanxi"></div>
-							<div class="col-lg-2" ></div>
-							<div class="col-lg-4" id="tagsList" >
+						<div class="row" style="height: 3em;"></div>
+						<div class="row" >
+							<div class="col-lg-7" style="height: 35em;" id="guanxi"></div>
+                            <div class="col-lg-1" style="width: 5em;"></div>
+							<div class="col-lg-4" id="tagsList">
 								<a href="#" data="破产程序中有关债务人的诉讼案件">破产程序中有关债务人的诉讼案件</a>
 								<a href="#" data="票据纠纷诉讼">票据纠纷诉讼</a>
 								<a href="#" data="专属管辖">专属管辖</a>
@@ -275,6 +293,14 @@
 												<i class="fa fa-plus" style="width:24px"></i>
 												<span class="menu-title">
 													<strong>生成知识图谱的一条路径</strong>
+												</span>
+											</a>
+										</li>
+                                        <li>
+											<a href="{{ url_for('add_search') }}">
+												<i class="fa fa-question-circle" style="width:24px"></i>
+												<span class="menu-title">
+													<strong>检索新生成的节点</strong>
 												</span>
 											</a>
 										</li>

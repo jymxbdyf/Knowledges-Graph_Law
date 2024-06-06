@@ -34,7 +34,6 @@
 		<script src="../static/js/pace.min.js"></script>
 
 
-
 		<!--jQuery [ REQUIRED ]-->
 		<script src="../static/js/jquery-2.2.4.min.js"></script>
 
@@ -46,30 +45,60 @@
 		<!--NiftyJS [ RECOMMENDED ]-->
 		<script src="../static/js/nifty.min.js"></script>
 		<script src="../static/js/icons.js"></script>
-
-
 		<script src="../static/js/echarts.min.js"></script>
+		<script src="../static/js/tags.js"></script>
+
 
 
 		<!--=================================================-->
 
 		<!--Demo script [ DEMONSTRATION ]-->
 		<script src="../static/js/nifty-demo.min.js"></script>
-        <style type="text/css">
-            @media(max-width:960px)
-            {
-                #guanxi{
-                    font-family: 华文行楷,serif ;
-                    font-size:0.2em;
+         <style type="text/css">
+            @media(max-width:960px) {
+                #divweb {
+                    display: none
+                }
+                #divtitle {
+                    height: 2em;
+                    font-family: 华文行楷, serif;
+                    font-size: 0.7em;
                 }
             }
-        </style>
+         </style>
+		<style type="text/css">
+			#tagsList {
+				position: relative;
+				width: 250px;
+				height: 250px;
+			}
+
+			#tagsList a {
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				font-family: Microsoft YaHei;
+				color: gray;
+				font-weight: bold;
+				text-decoration: none;
+				padding: 3px 6px;
+			}
+
+			#tagsList a:hover {
+				color: #249e92;
+				letter-spacing: 2px;
+			}
+
+			#search:focus {
+				border: 1px solid deepskyblue;
+			}
+		</style>
 
 	</head>
 
 	<body>
 
-		<div id="container" class="effect aside-float aside-bright mainnav-sm">
+		<div id="container" class="effect aside-float aside-bright mainnav-lg">
 
 			<!--NAVBAR-->
 			<!--===================================================-->
@@ -105,10 +134,11 @@
 
 						</ul>
 						<ul class="nav navbar-top-links pull-left">
+
 							<h4>小型法律知识图谱构建与应用</h4>
+
 						</ul>
 					</div>
-
 					<!--================================-->
 					<!--End Navbar Dropdown-->
 
@@ -117,179 +147,59 @@
 			<!--===================================================-->
 			<!--END NAVBAR-->
 
-			<div class="boxed">
-
-				<!--CONTENT CONTAINER-->
-				<!--===================================================-->
-				<div id="content-container">
-
+			<div id="content-container">
+				<div class="boxed">
+					<!--CONTENT CONTAINER-->
+					<!--===================================================-->
 					<!--Page content-->
 					<!--===================================================-->
 					<div id="page-content">
-
-						<div class="row" style="height: 800px;" id="guanxi">
-
-							<script type="text/javascript">
-								window.onresize = function() {
-
-									myChart.resize();
-								}
-								$.ajaxSetup({
-									async: false
-								});
-								var myChart = echarts.init(document.getElementById("guanxi"), 'dark');
-								myChart.showLoading();
-								var rela = {
-									"data": [],
-									"links": []
-								};
-								$.getJSON('../static/jurisdiction.json', function(json) {
-									rela = json;
-
-								});
-								myChart.hideLoading();
-								option = {
-									// backgroundColor: "white",
-									title: {
-										text: '民诉法知识图谱概览',
-										textStyle: {
-											// color: "white",
-											fontWeight: "lighter",
-											fontFamily: "华文行楷,serif",
-											fontSize: 30,
-											color: "darkslategray",
-										}
-									},
-									animationDurationUpdate: 1500,
-									animationEasingUpdate: 'quinticInOut',
-									legend: {
-										x: "center",
-										show: true,
-										data: ["Theme", "Form", "Resolution_Jurisdiction", "Case", "Details", "Court_Answer"]
-									},
-									series: [{
-										type: 'graph',
-										layout: 'force',
-										symbolSize: 45,
-										edgeSymbol: ['circle', 'arrow'],
-										edgeSymbolSize: [4, 4],
-										edgeLabel: {
-											normal: {
-												show: true,
-												textStyle: {
-													fontSize: 10
-												},
-												formatter: "{c}"
-											}
-										},
-										force: {
-											repulsion: 2500,
-											edgeLength: [10, 100]
-										},
-										focusNodeAdjacency: true,
-										draggable: true,
-										roam: true,
-										categories: [{
-												name: 'Theme',
-												itemStyle: {
-													normal: {
-														color: "seagreen",
-													}
-												}
-											}, {
-												name: 'Form',
-												itemStyle: {
-													normal: {
-														color: "darksalmon",
-													}
-												}
-											}, {
-												name: 'Resolution_Jurisdiction',
-												itemStyle: {
-													normal: {
-														color: "peru",
-													}
-												}
-											},
-											{
-												name: 'Case',
-												itemStyle: {
-													normal: {
-														color: "darkcyan",
-													}
-												}
-											}, {
-												name: 'Details',
-												itemStyle: {
-													normal: {
-														color: "palevioletred",
-													}
-												}
-											}, {
-												name: 'Court_Answer',
-												itemStyle: {
-													normal: {
-														color: "gray",
-													}
-												}
-											}
-										],
-										label: {
-											normal: {
-												show: true,
-												textStyle: {
-													fontSize: 12
-												},
-											}
-										},
-										force: {
-											repulsion: 1000
-										},
-										tooltip: {
-											formatter: function(node) { // 区分连线和节点，节点上额外显示其他数字
-												if (!node.value) {
-													return node.data.name;
-												} else {
-													return node.data.name + ":" + node.data.showNum;
-												}
-											},
-										},
-										lineStyle: {
-											normal: {
-												opacity: 0.9,
-												width: 1,
-												curveness: 0.3
-											}
-										},
-										// progressiveThreshold: 700,
-										nodes: rela.data.map(function(node, idx) {
-											node.id = idx;
-											return node;
-										}),
-										links: rela.links,
-
-
-
-									}]
-								};
-								myChart.setOption(option, true);
-							</script>
-
+                        <div class="row">
+                            <div class="col-lg-4" id="divtitle">
+							    <span style="font-family: 华文行楷,serif;font-size: 2.3em;color:darkslategrey;">
+								    节点生成器-新节点搜索
+							    </span>
+						    </div>
+                            <div class="col-lg-4"></div>
+                             <div class="col-lg-3" id="divweb">
+								<span style="font-weight: lighter;font-size: 22px;font-family: 华文行楷,serif"
+									class="text-main pad-btm bord-btm">
+									同时按
+									<button style=" background-color:deepskyblue;color:white;width: 45px;height: 27px;
+										border:0;font-size: 18px; border-radius: 30px;font-family:'HP Simplified',serif">
+										ctrl
+									</button>
+									+
+									<button style=" background-color:deepskyblue;color:white;width: 25px;height: 25px;
+										border:0;font-size: 18px;border-radius: 30px;font-family:'HP Simplified',serif">
+										r
+									</button>
+									可刷新页面
+								</span>
+							</div>
+                        </div>
+                        <div class="row" style="height:1em"></div>
+                        <div class="row" >
+                             <div class="col-lg-3"></div>
+                            <div class="col-lg-5">
+								<div class="input-group">
+									<input style="font-weight: lighter;font-size: 17px;" type="text" id="question"
+										class="form-control input-lg" placeholder="请输入你要检索的节点名称...">
+									<span style="font-weight: bold;font-size: 17px;"
+										class="input-group-addon btn btn-primary" onclick="question()">搜索</span>
+								</div>
+							</div>
+                        </div>
+						<div class="row" style="height: 1em;"></div>
+						<div class="row">
+							<div class="col-lg-10" style="height: 35em;" id="guanxi"></div>
 						</div>
-
-
-
-
-
 					</div>
 					<!--===================================================-->
 					<!--End page content-->
-
-
 				</div>
 				<!--===================================================-->
 				<!--END CONTENT CONTAINER-->
-
 
 				<!--MAIN NAVIGATION-->
 				<!--===================================================-->
@@ -304,13 +214,8 @@
 
 									<ul id="mainnav-menu" class="list-group">
 
-
-
 										<!--Category name-->
 										<li class="list-header">民诉法知识图谱</li>
-
-										<!--Menu list item-->
-
 
 										<!--Menu list item-->
 										<li>
@@ -319,10 +224,7 @@
 												<span class="menu-title">
 													<strong>检索法条逻辑关系</strong>
 												</span>
-
 											</a>
-
-
 										</li>
 										<li>
 											<a href="{{ url_for('jurisdiction') }}">
@@ -330,9 +232,7 @@
 												<span class="menu-title">
 													<strong>民诉法知识图谱-主管与管辖</strong>
 												</span>
-
 											</a>
-
 										</li>
 										<li>
 											<a href="{{ url_for('query_p') }}">
@@ -343,14 +243,9 @@
 											</a>
 										</li>
 										<!--Menu list item-->
-
-
-
 										<li class="list-divider"></li>
-
 										<!--Category name-->
 										<li class="list-header">法考知识图谱</li>
-
 										<!--Menu list item-->
 										<li>
 											<a href="{{ url_for('knowledges') }}">
@@ -390,7 +285,6 @@
 												</span>
 											</a>
 										</li>
-
 									</ul>
 
 								</div>
@@ -405,6 +299,7 @@
 				<!--END MAIN NAVIGATION-->
 
 			</div>
+
 			<!-- FOOTER -->
 			<!--===================================================-->
 			<footer id="footer">
@@ -424,6 +319,127 @@
 		</div>
 		<!--===================================================-->
 		<!-- END OF CONTAINER -->
+		<script type="text/javascript">
 
+            $( "#question" ).keypress(function(event)  {
+                // 回车键事件
+                if (event.which === 13) {
+                    question();
+                }
+            });
+			window.onresize = function() {
+
+				myChart.resize();
+			}
+
+			$.ajaxSetup({
+				async: false
+			});
+			var myChart = echarts.init(document.getElementById("guanxi"));
+			myChart.showLoading();
+
+			myChart.hideLoading();
+			option = {
+				// backgroundColor: "white",
+				title: {
+					textStyle: {
+						// color: "white",
+						fontWeight: "lighter",
+					}
+				},
+				animationDurationUpdate: 1500,
+				animationEasingUpdate: 'quinticInOut',
+				legend: {
+					x: "center",
+					show: true,
+					data: ["起始节点", "指向节点"]
+				},
+				series: [{
+					type: 'graph',
+					layout: 'force',
+					symbolSize: 50,
+					edgeSymbol: ['circle', 'arrow'],
+					edgeSymbolSize: [4, 4],
+					edgeLabel: {
+						normal: {
+							show: true,
+							textStyle: {
+								fontSize: 10
+							},
+							formatter: "{c}"
+						}
+					},
+					force: {
+						repulsion: 2500,
+						edgeLength: [10, 100]
+					},
+					focusNodeAdjacency: true,
+					draggable: true,
+					roam: true,
+					categories: [{
+							name: "起始节点",
+							itemStyle: {
+								normal: {
+									color: "palevioletred",
+								}
+							}
+						}, {
+							name: "指向节点",
+							itemStyle: {
+								normal: {
+									color: "darkcyan",
+								}
+							}
+						},
+
+					],
+					label: {
+						normal: {
+							show: true,
+							textStyle: {
+								fontSize: 10
+							},
+						}
+					},
+					force: {
+						repulsion: 1000
+					},
+					tooltip: {
+						formatter: function(node) { // 区分连线和节点，节点上额外显示其他数字
+							if (!node.value) {
+								return node.data.name;
+							} else {
+								return node.data.name + ":" + node.data.showNum;
+							}
+						},
+					},
+					lineStyle: {
+						normal: {
+							opacity: 0.9,
+							width: 1,
+							curveness: 0.3
+						}
+					},
+					// progressiveThreshold: 700,
+					nodes: [],
+					links: [],
+
+				}]
+			};
+
+			function question() {
+				$.getJSON('/search_name', {
+					name: $("#question").val(),
+				}, function(json) {
+					option.series[0].nodes = json.data.map(function(node, idx) {
+						node.id = idx;
+						return node;
+					});
+					option.series[0].links = json.links;
+					myChart.setOption(option, true);
+
+				});
+			}
+		</script>
 	</body>
 </html>

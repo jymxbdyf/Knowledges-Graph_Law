@@ -55,6 +55,10 @@ def add_user():
     json_data=user_creat_query(str(start),str(relation), str(end))
     return jsonify(json_data)
 
+@app.route("/add_search", methods=["GET", "POST"])
+def add_search():
+    return render_template("add_search.html")
+
 @app.route("/query_p", methods=["GET", "POST"])
 def query_p():
         return render_template('query_path.html')

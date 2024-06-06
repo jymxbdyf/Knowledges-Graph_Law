@@ -54,13 +54,28 @@
 
 		<!--Demo script [ DEMONSTRATION ]-->
 		<script src="../static/js/nifty-demo.min.js"></script>
+        <style type="text/css">
+            @media(max-width:960px) {
+                #divweb {
+                    display: none
+                }
+                #divtitle {
+                    height: 3em;
+                    font-family: 华文行楷, serif;
+                    font-size: 0.7em;
+                }
+            }
+        </style>
 		<style type="text/css">
 			#tagsList {
 				position: relative;
 				width: 250px;
 				height: 250px;
 			}
-
+			#tagsList a:hover {
+				color: #249e92;
+				letter-spacing: 2px;
+			}
 			#tagsList a {
 				position: absolute;
 				top: 0px;
@@ -71,14 +86,11 @@
 				text-decoration: none;
 				padding: 3px 6px;
 			}
-
-			#tagsList a:hover {
-				color: #249e92;
-				letter-spacing: 2px;
-			}
-
-			#chapter:focus {
+            #knowledge:focus {
 				border: 1px solid #249e92;
+			}
+			#chapter:focus {
+				border: 1px solid deepskyblue;
 			}
 		</style>
 
@@ -144,12 +156,12 @@
 					<!--Page content-->
 					<!--===================================================-->
 					<div id="page-content">
-                        <div class="row" style="height: 55px">
-                        <div class="col-lg-8">
+                        <div class="row" >
+                        <div class="col-lg-8" id="divtitle">
 						<span class="text-main pad-btm bord-btm"
-							style="font-family: 华文行楷,serif ;font-size:30px">法考知识图谱-法考知识点与题目检索</span>
+							style="font-family: 华文行楷,serif ;font-size:2.3em">法考知识图谱-知识点与题目检索</span>
                         </div>
-                        <div class="col-lg-2" style="width:300px">
+                        <div class="col-lg-2" style="width:300px" id="divweb">
 								<span style="font-weight: lighter;font-size: 22px;font-family: 华文行楷,serif"
 									class="text-main pad-btm bord-btm">
 									同时按
@@ -166,12 +178,11 @@
 								</span>
 							</div>
                         </div>
-						<div class="row" style="height: 30px">
+						<div class="row">
                             <div class="col-lg-1"></div>
-							<div class="col-lg-5" style="width:420px">
+							<div class="col-lg-3" style="width:25em">
 								<div class="input-group">
-
-										<select style="font-weight: bold;font-size: 15px;" id="chapter"
+										<select style="font-weight: bold;font-size: 1.1em;height:3em" id="chapter"
 											class="form-control input-lg">
                                             <option value="">请选择章节名称</option>
 											<option value="刑法">刑法</option>
@@ -194,23 +205,23 @@
 											<option value="环境资源保护法">环境资源保护法</option>
 										</select>
 
-									<span style="font-weight: bold;font-size: 17px;"
+									<span style="font-weight: bold;font-size: 1.2em;"
 										class="input-group-addon btn btn-primary" onclick="chapter()">查询</span>
 								</div>
 							</div>
                             <div class="col-lg-1"></div>
-                             <div class="col-lg-3" style="width:350px">
+                             <div class="col-lg-3" style="width:25em">
                                  <div class="input-group">
-							        <input style="font-weight: bold;font-size: 17px;" type="text" id="knowledge"
+							        <input style="font-weight: bold;font-size: 1.2em;" type="text" id="knowledge"
 								        class="form-control input-lg" placeholder="请输入知识点名称">
-							        <span style="font-weight: bold;font-size: 17px;" class="input-group-addon btn btn-mint"
+							        <span style="font-weight: bold;font-size: 1.2em;" class="input-group-addon btn btn-mint"
 								        onclick="knowledge()">搜索</span>
                                  </div>
 						    </div>
 						</div>
-						<div class="row" style="height: 40px;"></div>
+						<div class="row" style="height:1em;"></div>
 						<div class="row">
-							<div class="col-lg-11" style="height: 600px;" id="guanxi">
+							<div class="col-lg-11" style="height: 37em;" id="guanxi">
 
 							</div>
 							<!--<div class="col-lg-4" id="tagsList">
@@ -317,10 +328,15 @@
 												</span>
 											</a>
 										</li>
+                                        <li>
+											<a href="{{ url_for('add_search') }}">
+												<i class="fa fa-question-circle" style="width:24px"></i>
+												<span class="menu-title">
+													<strong>检索新生成的节点</strong>
+												</span>
+											</a>
+										</li>
 									</ul>
-
-
-
 								</div>
 							</div>
 						</div>

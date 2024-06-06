@@ -54,6 +54,25 @@
 
 		<!--Demo script [ DEMONSTRATION ]-->
 		<script src="../static/js/nifty-demo.min.js"></script>
+        <style type="text/css">
+            @media(max-width:960px)
+            {
+                #divweb{display:none}
+                #divtitle{
+                    font-family: 华文行楷,serif ;
+                    font-size:0.7em;
+                    height:3em;
+                }
+                #divtitle3{
+                    font-size:0.56em;
+                    text-align: center;
+                }
+                #divtable{
+                    height:6em;
+                    font-size:0.55em;
+                }
+            }
+        </style>
 		<style type="text/css">
 			#tagsList {
 				position: relative;
@@ -143,20 +162,17 @@
 					<!--===================================================-->
 					<div id="page-content">
                         <div class="row" style="height: 55px">
-						<div class="col-lg-5" style="width:550px">
-							<span style="font-family: 华文琥珀,serif;font-size: 22px;color:darkslategrey">
-								<i class="fa fa-hand-o-down" style="width:24px"></i>
-								节点生成器
-								<span style="font-family: 华文行楷,serif;font-size: 22px;">（可在知识图谱中生成一条新路径）</span>
-							</span>
-						</div>
-						<div class="col-lg-3"style="width:360px">
-							<span style="font-family: 华文琥珀,serif;font-size: 24px;color:darkslategrey">
-								<i class="fa fa-hand-o-down" style="width:36px"></i>
-								搜索新生成的节点
-							</span>
-						</div>
-                             <div class="col-lg-2" style="width:300px">
+                            <div class="col-lg-4" id="divtitle">
+							    <span style="font-family: 华文行楷,serif;font-size: 2.3em;color:darkslategrey;">
+								    节点生成器-路径生成
+							    </span>
+						    </div>
+                            <div class="col-lg-4" id="divtitle3">
+                                <button style="font-family: 华文琥珀,serif;font-size: 1.8em;background-color:lightskyblue;border-radius: 2em;border:0">
+								请按照下表指引输入<i class="fa fa-hand-o-down" style="width:1em"></i>
+							    </button>
+                            </div>
+                            <div class="col-lg-3" id="divweb">
 								<span style="font-weight: lighter;font-size: 22px;font-family: 华文行楷,serif"
 									class="text-main pad-btm bord-btm">
 									同时按
@@ -173,38 +189,46 @@
 								</span>
 							</div>
                         </div>
-                        <div class="row" style="height: 155px">
-                            <div class="col-lg-1"style="width: 55px"></div>
-						    <div class="col-lg-4" style="width:400px">
-								<div class="form-control input-lg">
-									<input style="font-weight: lighter;font-size: 20px;font-family: 华文细黑,serif"
+                        <div class="row">
+                            <div class="col-lg-3"></div>
+
+                            <table style="height:3em;text-align: center;">
+								<tr>
+									<td>
+										<div class="form-control input-lg"id="divtable">
+											<input style="font-weight: lighter;font-size: 1.4em;font-family: 华文细黑,serif"
 										id="start" name="start" type="text" placeholder="请输入起始节点名称"
 										class="form-control input-lg">
-								</div>
-								<div class="form-control input-lg">
-									<input style="font-weight: lighter;font-size: 20px;font-family: 华文细黑,serif"
+										</div>
+									</td>
+									<td>
+										<div class="form-control input-lg"id="divtable">
+											<input style="font-weight: lighter;font-size: 1.4em;font-family: 华文细黑,serif"
 										id="relation" name="relation" type="text" placeholder="请输入关系名称"
 										class="form-control input-lg">
-								</div>
-								<div class="form-control input-lg">
-									<input style="font-weight: lighter;font-size: 20px;font-family: 华文细黑,serif" id="end"
+										</div>
+									</td>
+								</tr>
+
+								<tr>
+									<td>
+										<div class="form-control input-lg"id="divtable">
+											<input style="font-weight: lighter;font-size: 1.4em;font-family: 华文细黑,serif" id="end"
 										name="end" type="text" placeholder="请输入指向节点名称" class="form-control input-lg">
-								</div>
-								<span style="font-weight: bold;font-size: 17px;" class="input-group-addon btn btn-info"
+										</div>
+									</td>
+
+									<td id="divtable">
+                                        <span class="input-group-addon btn btn-info" style="font-family: 华文细黑,serif; font-weight: bold;font-size: 1.8em;height:2.2em"
 									onclick="add()">确定生成</span>
-							</div>
-                             <div class="col-lg-1"style="width: 55px"></div>
-						    <div class="col-lg-5" style="width:400px">
-							    <input style="font-weight: lighter;font-size: 17px;" type="text" id="question"
-								    class="form-control input-lg" placeholder="请输入你要检索的节点名称...">
-							    <span style="font-weight: bold;font-size: 17px;" class="input-group-addon btn btn-primary"
-								    onclick="question()">搜索</span>
-						    </div>
+
+									</td>
+								</tr>
+							</table>
                         </div>
-						<div class="row" style="height: 40px;"></div>
+						<div class="row" style="height: 1em;"></div>
 						<div class="row">
-							<div class="col-lg-10" style="height: 400px;" id="guanxi"></div>
-							<div class="col-lg-2"></div>
+							<div class="col-lg-10" style="height: 32em;" id="guanxi"></div>
 						</div>
 					</div>
 					<!--===================================================-->
@@ -289,6 +313,14 @@
 												</span>
 											</a>
 										</li>
+                                        <li>
+											<a href="{{ url_for('add_search') }}">
+												<i class="fa fa-question-circle" style="width:24px"></i>
+												<span class="menu-title">
+													<strong>检索新生成的节点</strong>
+												</span>
+											</a>
+										</li>
 
 									</ul>
 
@@ -328,16 +360,10 @@
 
 			$("#end").keypress(function(e) {
 				// 回车键事件
-				if (e.which == 13) {
+				if (e.which === 13) {
 					add();
 				}
 			});
-            $( "#question" ).keypress(function(event)  {
-                // 回车键事件
-                if (event.which == 13) {
-                    question();
-                }
-            });
 			window.onresize = function() {
 
 				myChart.resize();
@@ -444,20 +470,6 @@
 					relation: $("#relation").val(),
 					end: $("#end").val(),
 
-				}, function(json) {
-					option.series[0].nodes = json.data.map(function(node, idx) {
-						node.id = idx;
-						return node;
-					});
-					option.series[0].links = json.links;
-					myChart.setOption(option, true);
-
-				});
-			}
-
-			function question() {
-				$.getJSON('/search_name', {
-					name: $("#question").val(),
 				}, function(json) {
 					option.series[0].nodes = json.data.map(function(node, idx) {
 						node.id = idx;
